@@ -20,7 +20,7 @@ class User {
     @Column({ type: 'varchar', length: 120 })
     password: string
 
-    @CreateDateColumn({type: "date"})
+    @CreateDateColumn()
     createdAt?: string | Date
 
     @OneToMany(() => Contact, contact => contact.user)

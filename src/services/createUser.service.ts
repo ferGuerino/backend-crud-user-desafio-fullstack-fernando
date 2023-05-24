@@ -3,6 +3,7 @@ import { AppDataSource } from "../data-source";
 import { User } from "../entities/user.entitie";
 import { TUserRequest, TUserResponse } from "../interfaces/users.interface";
 import { userSchemaResponse } from "../schemas/users.schema";
+import { AppError } from "../errors/AppError";
 
 
 const createUserService = async (userData: TUserRequest):Promise<TUserResponse> =>{
@@ -16,7 +17,7 @@ const createUserService = async (userData: TUserRequest):Promise<TUserResponse> 
     })
 
     if(findUser){
-        throw new Error("User already exists")
+        throw new AppError("User already exists", 409)
     }
     
     const hashedPassword = await hash(password, 10)

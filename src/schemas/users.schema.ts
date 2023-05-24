@@ -6,10 +6,12 @@ const userSchema = z.object ({
     email: z.string().email(),
     phone: z.number(),
     password: z.string(),
+    createdAt: z.date(),
     
 })
 
 const userSchemaRequest = userSchema.omit({
+    createdAt: true,
     id: true,
     
 })
