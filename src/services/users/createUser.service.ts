@@ -1,9 +1,9 @@
 import { hash } from "bcryptjs";
-import { AppDataSource } from "../data-source";
-import { User } from "../entities/user.entitie";
-import { TUserRequest, TUserResponse } from "../interfaces/users.interface";
-import { userSchemaResponse } from "../schemas/users.schema";
-import { AppError } from "../errors/AppError";
+import { AppDataSource } from "../../data-source";
+import { User } from "../../entities/user.entitie";
+import { TUserRequest, TUserResponse } from "../../interfaces/users.interface";
+import { userSchemaResponse } from "../../schemas/users.schema";
+import { AppError } from "../../errors/AppError";
 
 
 const createUserService = async (userData: TUserRequest):Promise<TUserResponse> =>{
