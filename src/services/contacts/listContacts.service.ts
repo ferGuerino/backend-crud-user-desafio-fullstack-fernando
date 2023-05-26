@@ -18,12 +18,11 @@ const listContactsService = async (userId: string):Promise<any> =>{
         throw new AppError("User not found", 404)
     }
     
-    const contacts: Contact[] = await contactsRepository.find({
-        where: {
-            user: user
-        }
-    })
-    console.log(contacts)
+    const contacts: Contact[] = await contactsRepository.createQueryBuilder("contact")
+    .leftJoin("contact.user", "user")
+    .where("user.id = :userId", { userId })
+    .getMany();
+    
 
     return contactSchemaListResponse.parse(contacts)
     
