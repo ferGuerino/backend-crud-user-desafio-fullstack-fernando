@@ -5,8 +5,8 @@ import { Contact } from "./contact.entities"
 @Entity("users")
 class User {
 
-    @PrimaryGeneratedColumn("increment")
-    id: number
+    @PrimaryGeneratedColumn("uuid")
+    id: string
 
     @Column({type: "varchar", length: 50})
     name: string
@@ -15,7 +15,7 @@ class User {
     email: string
 
     @Column({ type: 'varchar', length: 11 })
-    phone: number
+    phone: string
 
     @Column({ type: 'varchar', length: 120 })
     password: string

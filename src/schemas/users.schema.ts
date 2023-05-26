@@ -1,10 +1,10 @@
 import {z} from "zod"
 
 const userSchema = z.object ({
-    id: z.number(),
+    id: z.string(),
     name: z.string(),
     email: z.string().email(),
-    phone: z.number(),
+    phone: z.string(),
     password: z.string(),
     createdAt: z.date(),
     
@@ -20,4 +20,6 @@ const userSchemaResponse = userSchema.omit({
     password: true,
 })
 
-export {userSchema, userSchemaRequest, userSchemaResponse}
+const usersSchemaResponse = z.array(userSchemaResponse)
+
+export {userSchema, userSchemaRequest, userSchemaResponse, usersSchemaResponse}
