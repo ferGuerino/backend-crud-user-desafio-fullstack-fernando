@@ -11,7 +11,7 @@ contactsRoutes.use(ensureAuthMiddleware)
 
 contactsRoutes.post("", ensureDataIsValidMiddleware(contactSchemaRequest), createContactController)
 contactsRoutes.get("", listContactController)
-contactsRoutes.patch("/:id", ensureIsOwnerMiddleware, ensureDataIsValidMiddleware(contactSchemaUpdate), ensureIsOwnerMiddleware, ensureDataIsValidMiddleware(contactSchemaUpdate), updateContactController)
-contactsRoutes.delete("/:id", ensureIsOwnerMiddleware, ensureIsOwnerMiddleware, deleteContactController)
+contactsRoutes.patch("/:id", ensureIsOwnerMiddleware, ensureDataIsValidMiddleware(contactSchemaUpdate), updateContactController)
+contactsRoutes.delete("/:id", ensureIsOwnerMiddleware, deleteContactController)
 
 export {contactsRoutes}

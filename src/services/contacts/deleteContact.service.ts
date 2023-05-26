@@ -3,7 +3,7 @@ import { Contact } from "../../entities/contact.entities"
 import { AppError } from "../../errors/AppError"
 
 
-const deleteContactService = async (contactId: number):Promise<void> =>{
+const deleteContactService = async (contactId: string):Promise<void> =>{
     const contactRepository = AppDataSource.getRepository(Contact)
     const contact = await contactRepository.findOneBy({id: contactId})
 

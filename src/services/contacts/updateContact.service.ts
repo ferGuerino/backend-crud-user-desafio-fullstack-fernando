@@ -5,7 +5,7 @@ import { TContactResponse, TContactUpdateRequest } from "../../interfaces/contac
 import { contactSchema } from "../../schemas/contacts.schema";
 
 
-const updateContactService = async (data: TContactUpdateRequest, contactId: number):Promise<TContactResponse>=>{
+const updateContactService = async (data: TContactUpdateRequest, contactId: string):Promise<TContactResponse>=>{
     const contactRepository = AppDataSource.getRepository(Contact)
     const oldContact = await contactRepository.findOneBy({id: contactId})
 

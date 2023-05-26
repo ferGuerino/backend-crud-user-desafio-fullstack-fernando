@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { createUserService } from "../services/users/createUser.service";
 import { TUserRequest } from "../interfaces/users.interface";
 import { listUsersService } from "../services/users/listUsers.service";
+import { updateUserService } from "../services/users/updateUser.service";
 
 const createUserController = async (request:Request, response:Response):Promise<Response> =>{
 
@@ -18,5 +19,15 @@ const listUsersController = async (request:Request, response:Response):Promise<R
     return response.json(users)
 }
 
+const updateUserController = async (request:Request, response:Response):Promise<Response>=>{
+    const userId = response.locals.userId
 
-export {createUserController, listUsersController}
+    const userData = request.body
+
+    const updatedUser = await updateUserService(userData, userId)
+
+    return response.json(updatedUser)
+}
+
+
+export {createUserController, listUsersController, updateUserController}

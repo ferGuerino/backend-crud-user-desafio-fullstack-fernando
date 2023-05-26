@@ -16,10 +16,12 @@ const userSchemaRequest = userSchema.omit({
     
 })
 
+const userSchemaUpdateRequest = userSchemaRequest.partial()
+
 const userSchemaResponse = userSchema.omit({
     password: true,
 })
 
 const usersSchemaResponse = z.array(userSchemaResponse)
 
-export {userSchema, userSchemaRequest, userSchemaResponse, usersSchemaResponse}
+export {userSchema, userSchemaRequest, userSchemaResponse, usersSchemaResponse, userSchemaUpdateRequest}
