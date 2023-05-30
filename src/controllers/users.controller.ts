@@ -3,6 +3,7 @@ import { createUserService } from "../services/users/createUser.service";
 import { TUserRequest } from "../interfaces/users.interface";
 import { listUsersService } from "../services/users/listUsers.service";
 import { updateUserService } from "../services/users/updateUser.service";
+import { deleteUserService } from "../services/users/deleteUser.service";
 
 const createUserController = async (request:Request, response:Response):Promise<Response> =>{
 
@@ -29,5 +30,13 @@ const updateUserController = async (request:Request, response:Response):Promise<
     return response.json(updatedUser)
 }
 
+const deleteUserController = async (request:Request, response: Response):Promise<Response>=>{
+    const userId = response.locals.userId
 
-export {createUserController, listUsersController, updateUserController}
+    await deleteUserService(userId)
+
+    return response.json()
+}
+
+
+export {createUserController, listUsersController, updateUserController, deleteUserController}
