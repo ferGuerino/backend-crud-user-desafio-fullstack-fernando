@@ -36,9 +36,7 @@ The User and Contact API project aims to streamline the process of managing user
 
 **yarn install** >>> to install all the dependencies for the application as specified in the package.json file
 
-configure the environment variables following the example in the .env.exemple file
-
-**yarn typeorm migration:generate ./src/migrations/createTablesDB -d src/data-source.ts** >>> to generate migrations
+configure the environment variables following the example in the **.env.exemple** file
 
 **yarn typeorm migration:run -d src/data-source** >>> to run migrations
 
@@ -48,4 +46,3 @@ configure the environment variables following the example in the .env.exemple fi
 ## See the documentation on : 
 
 http://localhost:3001/api-docs/
-
