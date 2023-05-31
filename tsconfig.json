@@ -9,6 +9,7 @@
     "strict": true,
     "exactOptionalPropertyTypes": true,
     "skipLibCheck": true,
+    "resolveJsonModule": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false

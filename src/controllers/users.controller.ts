@@ -35,7 +35,7 @@ const deleteUserController = async (request:Request, response: Response):Promise
 
     await deleteUserService(userId)
 
-    return response.json()
+    return response.status(204).json()
 }
 
 

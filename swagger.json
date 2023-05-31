@@ -1,0 +1,685 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "title": "Api User and Contacts",
+        "description": "This API was created to register users and their contacts.",
+        "version": "1.0.0"
+    },
+    "paths":{
+        "/users":{
+            "post":{
+                "description": "User creation",
+                "tags": ["Users"],
+                "requestBody":{
+                    "description": "Data for user creation",
+                    "content": {
+                        "application/json":{
+                            "schema": {
+                                "$ref": "#/components/schemas/requestUser"
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseUser"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseUser400"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseUser409"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get":{
+                "description": "User List",  
+                "tags": ["Users"],              
+                "responses":{
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/responseUser"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch":{
+                "description": "User Update",
+                "tags": ["Users"],
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "requestBody":{
+                    "description": "Data for user Update",
+                    "content": {
+                        "application/json":{
+                            "schema": {
+                                "$ref": "#/components/schemas/requestUser"
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseUser"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseUserUpdate400"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseUser409"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseUser401"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "token is missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseUser403"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "description": "User Delete",
+                "tags": ["Users"],
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],                
+                "responses":{
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Invalid token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseUser401"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "token is missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseUser403"
+                                }
+                            }
+                        }
+                    }
+                }
+            }           
+        },
+        "/login":{
+            "post":{
+                "description": "User login",
+                "tags": ["Login"],
+                "requestBody":{
+                    "description": "Data for user login",
+                    "content": {
+                        "application/json":{
+                            "schema": {
+                                "$ref": "#/components/schemas/requestLogin"
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseLogin"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbiden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseLogin403"
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+        },
+        "/contacts":{
+            "post":{
+                "description": "Contacts creation",
+                "tags": ["Contacts"],
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "requestBody":{
+                    "description": "Data for contacts creation",
+                    "content": {
+                        "application/json":{
+                            "schema": {
+                                "$ref": "#/components/schemas/requestContact"
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseContact"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseContact400"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseContact409"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseContact401"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "token is missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseContact403"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get":{
+                "description": "Contacts List",  
+                "tags": ["Contacts"], 
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],             
+                "responses":{
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/responseContact"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseContact401"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "token is missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseContact403"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch":{
+                "description": "Contacts Update",
+                "tags": ["Contacts"],
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "requestBody":{
+                    "description": "Data for contacts Update",
+                    "content": {
+                        "application/json":{
+                            "schema": {
+                                "$ref": "#/components/schemas/requestContact"
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseContact"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseContactUpdate400"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseContact409"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseContact401"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "token is missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseContact403"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "description": "Contacts Delete",
+                "tags": ["Contacts"],
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],                
+                "responses":{
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Invalid token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseContact401"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "token is missing",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responseContact403"
+                                }
+                            }
+                        }
+                    }
+                }
+            }           
+        }
+    },
+    "components":{
+        "schemas":{
+            "requestUser":{
+                "type":"object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "User name",
+                        "example": "Alex"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "User email",
+                        "example": "alex@mail.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "User password",
+                        "example": "1234"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "description": "User phone contact",
+                        "example": "12345678901"
+                    }
+                }
+            },
+            "responseUser":{
+                "type":"object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "User Id",
+                        "format": "uuid"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "User name",
+                        "example": "Alex"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "User email",
+                        "example": "alex@mail.com"
+                    },                    
+                    "phone": {
+                        "type": "string",
+                        "description": "User phone contact",
+                        "example": "12345678901"
+                    }
+                }
+            },
+            "responseUser400":{
+                "type":"object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "name/email/phone/password Required",
+                        "example": "name/email/phone/password Required"
+                    }
+                }
+            },
+            "responseUserUpdate400":{
+                "type":"object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "Expected string",
+                        "example": "Expected string"
+                    }
+                }
+            },
+            "responseUser409":{
+                "type":"object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "Email already exists",
+                        "example": "Email already exists"
+                    }
+                }
+            },
+            "responseUser403":{
+                "type":"object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "token is missing",
+                        "example": "token is missing"
+                    }
+                }
+            },
+            "responseUser401":{
+                "type":"object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "Invalid token",
+                        "example": "Invalid token"
+                    }
+                }
+            },
+            "requestLogin":{
+                "type":"object",
+                "properties": {                    
+                    "email": {
+                        "type": "string",
+                        "description": "User email",
+                        "example": "alex@mail.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "User password",
+                        "example": "1234"
+                    }
+                }
+            },
+            "responseLogin":{
+                "type":"object",
+                "properties": {
+                    "token": {
+                        "type": "string",
+                        "description": "token",
+                        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkZlcm5hbmRvMiIsImlhdCI6MTY4NTQ3OTkxNiwiZXhwIjoxNjg1NTY2MzE2LCJzdWIiOiJmZDMyNmJkMi03MTAxLTQ5ZTYtODhiMy1hMDEwZTFhNmJlZmUifQ.Jvw2RRKvH9ReogfAp9zpt9_gzqOUA5pzPPSbw8wtDzc"
+                    }
+                }
+            },
+            "responseLogin403":{
+                "type":"object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "invalid credentials",
+                        "example": "invalid credentials"
+                    }
+                }
+            },
+            "requestContact":{
+                "type":"object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Contact name",
+                        "example": "Alex"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "Contact email",
+                        "example": "alex@mail.com"
+                    },                    
+                    "phone": {
+                        "type": "string",
+                        "description": "Contact phone contact",
+                        "example": "12345678901"
+                    }
+                }
+            },
+            "responseContact":{
+                "type":"object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Contact Id",
+                        "format": "uuid"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Contact name",
+                        "example": "Alex"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "Contact email",
+                        "example": "alex@mail.com"
+                    },                    
+                    "phone": {
+                        "type": "string",
+                        "description": "Contact phone contact",
+                        "example": "12345678901"
+                    }
+                }
+            },
+            "responseContact400":{
+                "type":"object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "name/email/phone Required",
+                        "example": "name/email/phone Required"
+                    }
+                }
+            },
+            "responseContactUpdate400":{
+                "type":"object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "Expected string",
+                        "example": "Expected string"
+                    }
+                }
+            },
+            "responseContact409":{
+                "type":"object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "Email already exists",
+                        "example": "Email already exists"
+                    }
+                }
+            },
+            "responseContact403":{
+                "type":"object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "token is missing",
+                        "example": "token is missing"
+                    }
+                }
+            },
+            "responseContact401":{
+                "type":"object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "Invalid token",
+                        "example": "Invalid token"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth":{
+                "description": "JWT Authentication",
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
