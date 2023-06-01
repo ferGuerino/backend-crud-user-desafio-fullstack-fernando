@@ -4,6 +4,7 @@ import { TUserRequest } from "../interfaces/users.interface";
 import { listUsersService } from "../services/users/listUsers.service";
 import { updateUserService } from "../services/users/updateUser.service";
 import { deleteUserService } from "../services/users/deleteUser.service";
+import { retrieveUserService } from "../services/users/retrieveUserService";
 
 const createUserController = async (request:Request, response:Response):Promise<Response> =>{
 
@@ -18,6 +19,14 @@ const listUsersController = async (request:Request, response:Response):Promise<R
     const users = await listUsersService()
 
     return response.json(users)
+}
+
+const retrieveUsercontroller = async (request:Request, response:Response):Promise<Response>=>{
+    const userId = response.locals.userId
+
+    const user = await retrieveUserService(userId)
+
+    return response.json(user)
 }
 
 const updateUserController = async (request:Request, response:Response):Promise<Response>=>{
@@ -39,4 +48,4 @@ const deleteUserController = async (request:Request, response: Response):Promise
 }
 
 
-export {createUserController, listUsersController, updateUserController, deleteUserController}
+export {createUserController, listUsersController, retrieveUsercontroller, updateUserController, deleteUserController}
