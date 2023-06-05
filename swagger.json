@@ -375,7 +375,9 @@
                         }
                     }
                 }
-            },
+            }         
+        },
+        "/contacts/id":{            
             "patch":{
                 "description": "Contacts Update",
                 "tags": ["Contacts"],
